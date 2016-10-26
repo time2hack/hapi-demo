@@ -16,15 +16,6 @@ server.route({
         return reply('HapiJS Server running!');
     }
 });
-server.route({
-    method: 'GET',
-    path:'/hello', 
-    handler: function (request, reply) {
-
-        return reply('hello world');
-    }
-});
-
 // Start the server
 server.start((err) => {
 

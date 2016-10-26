@@ -18,13 +18,21 @@ server.route({
 });
 server.route({
     method: 'GET',
-    path:'/hello', 
+    path:'/api/{username}', 
     handler: function (request, reply) {
 
-        return reply('hello world');
+        return reply({q:request.query, p: request.params});
     }
 });
 
+server.route({
+    method: ['PUT', 'GET'],
+    path: '/api/{username}/friends',
+    handler: function(request, reply) {
+        const username = encodeURIComponent(request.params.username);
+        return reply(username)
+    }
+});
 // Start the server
 server.start((err) => {
 
