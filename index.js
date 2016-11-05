@@ -2,34 +2,33 @@ const Hapi = require('hapi');
 
 // Create a server with a host and port
 const server = new Hapi.Server();
-server.connection({ 
-    host: 'localhost', 
-    port: Number(process.argv[2]) || 8080 
+server.connection({
+  host: 'localhost',
+  port: Number(process.argv[2]) || 8080
 });
 
 // Add the route
 server.route({
-    method: 'GET',
-    path:'/', 
-    handler: function (request, reply) {
-
-        return reply('HapiJS Server running!');
-    }
+  method: 'GET',
+  path:'/',
+  handler: function (request, reply) {
+    return reply('HapiJS Server running!');
+  }
 });
-server.route({
-    method: 'GET',
-    path:'/hello', 
-    handler: function (request, reply) {
 
-        return reply('hello world');
-    }
+server.route({
+  method: 'GET',
+  path:'/hello',
+  handler: function (request, reply) {
+    return reply('hello world');
+  }
 });
 
 // Start the server
 server.start((err) => {
 
-    if (err) {
-        throw err;
-    }
-    console.log('Server running at:', server.info.uri);
+  if (err) {
+    throw err;
+  }
+  console.log('Server running at:', server.info.uri);
 });
